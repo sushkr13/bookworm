@@ -1,0 +1,79 @@
+<mat-toolbar>
+    <div> 
+        <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">
+            <span>Menu</span>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="submit($event)">
+                <mat-icon>assignment</mat-icon>
+                <span>Book Open</span>
+            </button>
+            <button mat-menu-item (click)="submit($event)">
+                <mat-icon>assignment</mat-icon>
+                <span>Book Amendment</span>
+            </button>
+            <button mat-menu-item (click)="submit($event)">
+                <mat-icon>assignment</mat-icon>
+                <span>Book Closure</span>
+            </button>
+            <button mat-menu-item (click)="submit($event)">
+                <mat-icon>assignment</mat-icon>
+                <span>Book Reactivation</span>
+            </button>
+            <button mat-menu-item (click)="submit($event)">
+                <mat-icon>assignment</mat-icon>
+                <span>Bulk Book Closure</span>
+            </button>
+            <button mat-menu-item (click)="submit($event)">
+                <mat-icon>assignment</mat-icon>
+                <span>Task List</span>
+            </button>
+            <button mat-menu-item (click)="submit($event)">
+                <mat-icon>assignment</mat-icon>
+                <span>Audit Search</span>
+            </button>
+            <button mat-menu-item (click)="submit($event)">
+                <mat-icon>assignment</mat-icon>
+                <span>Add Owners</span>
+            </button>
+            <button mat-menu-item (click)="submit($event)">
+                <mat-icon>assignment</mat-icon>
+                <span>Spot Fire</span>
+            </button>
+        </mat-menu>
+    </div> 
+    <!-- <div class="requestIdClass">
+        <input matInput placeholder="Request Id *">
+        <button mat-raised-button color="primary">
+            <mat-icon>search</mat-icon>
+        </button> 
+    </div> -->
+    <div class="logoutClass">
+        <!-- <form class="my-form">  -->
+            <!-- <table class="logoutClass">
+                <tr>
+                    <td> -->
+                        <!-- <mat-form-field class="mat-select-content" appearance="outline"> -->
+                            <!-- <mat-label>Enter Request Id Here ...</mat-label> -->
+                            <!-- <input matInput class="mat-select-content" placeholder="Enter Request Id Here ...">
+                            <button mat-raised-button color="primary" >
+                                <mat-icon>search</mat-icon>
+                            </button>  -->
+                        <!-- </mat-form-field> -->
+                    <!-- </td>
+                    <td> -->
+        <mat-label class="mat-label-content">User Name : {{userName}}   {{ringFenceMarker}}</mat-label>
+        <input class="mat-select-content" placeholder="Enter Request Id Here ...">
+        <button mat-raised-button color="primary" type="button"> <mat-icon>search</mat-icon> </button> 
+        <button mat-raised-button color="primary" type="button" (click)=logout()>Logout</button>                         
+                    <!-- </td>
+                </tr>
+            </table> -->
+        <!-- <input matInput placeholder="Enter Request Id Here ..." class="mat-select-content">
+            <button mat-raised-button color="primary" >
+                <mat-icon>search</mat-icon>
+            </button>  -->
+            
+        </div> 
+    </mat-toolbar>
+    

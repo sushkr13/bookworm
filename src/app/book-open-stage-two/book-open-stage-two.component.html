@@ -1,0 +1,193 @@
+<mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+    <mat-panel-title>
+      Generic Details
+    </mat-panel-title>
+  </mat-expansion-panel-header> 
+  <form [formGroup]="service.stageTwoForm" (submit)=onSubmit()> 
+    <table class="fullwidth" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="mat-select-content" appearance="outline" >
+            <mat-label>Case Id *</mat-label>
+            <input matInput placeholder="Case Id *" formControlName="caseId" readonly>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>Date Requested *</mat-label>
+            <input matInput placeholder="Date Requested *" formControlName="dateRequested" readonly >
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>  
+    
+    <table class="fullwidth" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field appearance="outline" class="mat-select-content">
+            <mat-label>Business Area *</mat-label>
+            <mat-select placeholder="Business Area *" [(value)]="businessArea" formControlName="businessArea" matInput>
+              <mat-option *ngFor="let businessArea of businessAreas" [value]="businessArea.description" >
+                {{ businessArea.description }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>    
+        <td>
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>Requested By *</mat-label>
+            <input matInput placeholder="Requested By *" formControlName="requestedBy" readonly>
+          </mat-form-field>
+        </td>         
+      </tr>
+    </table>    
+    <div class="search-div"> 
+      <div class="button-row">
+      <button mat-raised-button type="button" (click)="onCreate()" color="primary">
+        <mat-icon>add</mat-icon>
+        Add Book Details
+      </button>
+    </div>
+      <mat-card class="example-card">
+        <mat-card-content > 
+          <div class="approvers-table mat-elevation-z8">
+            <mat-table [dataSource]="service.listData" #myTable>
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let element">
+                      <input type="hidden" formControlName="id" #id>
+                    </td>
+                  </ng-container>
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef>Actions</th>
+                  <tr>
+                  <td mat-cell *matCellDef="let row" > 
+                    <button mat-icon-button type="button" (click)="edit(row)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button" (click)="delete(row)">
+                      <mat-icon>delete</mat-icon>
+                    </button>                    
+                  </td>
+                </tr>
+                </ng-container>
+                <ng-container matColumnDef="isPrimary">
+                  <th mat-header-cell *matHeaderCellDef>IsPrimary</th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-checkbox [(ngModel)]="element.isPrimary" [ngModelOptions]="{standalone: true}" class="mat-radio-button-content"></mat-checkbox>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="isNewLedger">
+                  <th mat-header-cell *matHeaderCellDef>IsNewLedger</th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-checkbox [(ngModel)]="element.isNewLedger" [ngModelOptions]="{standalone: true}" class="mat-radio-button-content"></mat-checkbox>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="bookName">
+                  <th mat-header-cell *matHeaderCellDef >BookName</th>
+                  <td mat-cell *matCellDef="let element">{{element.bookName}}</td>
+                </ng-container>
+                <ng-container matColumnDef="sourceSystem">
+                  <th mat-header-cell *matHeaderCellDef >SourceSystem</th>
+                  <td mat-cell *matCellDef="let element">{{element.sourceSystem}}</td>
+                </ng-container>
+                <ng-container matColumnDef="sourceSystemLocation">
+                  <th mat-header-cell *matHeaderCellDef >SourceSystemLocation</th>
+                  <td mat-cell *matCellDef="let element">{{element.sourceSystemLocation}}</td>
+                </ng-container>
+                <ng-container matColumnDef="valuationAdjustmentBookType">
+                  <th mat-header-cell *matHeaderCellDef >ValuationAdjustmentBookType</th>
+                  <td mat-cell *matCellDef="let element">{{element.valuationAdjustmentBookType}}</td>
+                </ng-container>
+                <ng-container matColumnDef="bookClassification">
+                  <th mat-header-cell *matHeaderCellDef >BookClassification</th>
+                  <td mat-cell *matCellDef="let element">{{element.bookClassification}}</td>
+                </ng-container>
+                <ng-container matColumnDef="glPostingStatus">
+                  <th mat-header-cell *matHeaderCellDef >GLPostingStatus</th>
+                  <td mat-cell *matCellDef="let element">{{element.glPostingStatus}}</td>
+                </ng-container>
+                <ng-container matColumnDef="walkerPostingIndicator">
+                  <th mat-header-cell *matHeaderCellDef >WalkerPostingIndicator</th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-checkbox [(ngModel)]="element.walkerPostingIndicator" [ngModelOptions]="{standalone: true}" class="mat-radio-button-content"></mat-checkbox>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="walkerPostingSource">
+                  <th mat-header-cell *matHeaderCellDef >WalkerPostingSource</th>
+                  <td mat-cell *matCellDef="let element">{{element.walkerPostingSource}}</td>
+                </ng-container>
+                <ng-container matColumnDef="crFeed">
+                  <th mat-header-cell *matHeaderCellDef >CRFeed</th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-checkbox [(ngModel)]="element.crFeed" [ngModelOptions]="{standalone: true}" class="mat-radio-button-content"></mat-checkbox>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="mrFeed">
+                  <th mat-header-cell *matHeaderCellDef >MRFeed</th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-checkbox [(ngModel)]="element.mrFeed" [ngModelOptions]="{standalone: true}" class="mat-radio-button-content"></mat-checkbox>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="confirmationFlag">
+                  <th mat-header-cell *matHeaderCellDef >ConfirmationFlag</th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-checkbox [(ngModel)]="element.confirmationFlag" [ngModelOptions]="{standalone: true}" class="mat-radio-button-content"></mat-checkbox>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="settlementFlag">
+                  <th mat-header-cell *matHeaderCellDef >SettlementFlag</th>
+                  <td mat-cell *matCellDef="let element">{{element.settlementFlag}}</td>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+              </mat-table> 
+              </div>
+            </mat-card-content>
+          </mat-card>    
+        </div> 
+        <br/>
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="service.stageTwoForm.invalid">Proceed</button>
+          <button mat-raised-button color="primary" (click)="onClear()">Cancel</button>
+        </div> 
+        <!-- <br>
+          <mat-label class="message">{{service.message}}</mat-label>
+        <br> -->
+      </form> 
+      
+      
+    </mat-expansion-panel>
+    
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+        <mat-panel-title>
+          Possible Source System Combinations
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="listdataSource" class="example-table">
+          
+          <ng-container matColumnDef="parentsourcesystem">
+            <th mat-header-cell *matHeaderCellDef class="sticky-header"> Parent Source System </th>
+            <td mat-cell *matCellDef="let row">{{ row.parentsourcesystem }}</td>
+          </ng-container>
+          
+          <ng-container matColumnDef="additionalsourcesystem">
+            <th mat-header-cell *matHeaderCellDef class="sticky-header"> Additional Source Systems </th>
+            <td mat-cell *matCellDef="let row">{{ row.additionalsourcesystem }}</td>
+            
+          </ng-container>
+          
+          
+          <mat-header-row *matHeaderRowDef="sourceSystemCombinationColumns; sticky: true"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: sourceSystemCombinationColumns;"></mat-row>
+        </mat-table>
+        
+        
+      </div>
+    </mat-expansion-panel>
+    
+    
+    

@@ -1,0 +1,47 @@
+  <mat-expansion-panel [expanded]="true" >
+    <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'" >
+      <mat-panel-title>
+        Questionaire
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <form [formGroup]="service.stageOneForm" class="formwidth" (submit)="onSubmit()">
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field appearance="outline" class="mat-select-content">
+              <mat-label>What Type of Book Opening? *</mat-label>
+              <mat-select placeholder="What Type of Book Opening? *" [(value)]="bookOpeningType"
+              formControlName="bookOpeningType" matInput>
+                <mat-option *ngFor="let bookOpeningType of bookOpeningTypes" [value]="bookOpeningType.description" >
+                  {{ bookOpeningType.description }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>               
+          </td>
+          <td>  
+            <pre>                       </pre> 
+          </td>         
+        </tr>
+      </table>
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>
+            <mat-label class="mat-select-content">Is this a risk only book?</mat-label>
+            <mat-radio-group formControlName="riskBook" class="mat-select-content">
+              <mat-radio-button value="Y">Yes</mat-radio-button>
+              <mat-radio-button value="N">No</mat-radio-button>
+            </mat-radio-group>
+          </td> 
+        </tr>
+      </table> 
+      <br>
+      <br>
+      <div class="button-row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="service.stageOneForm.invalid">Submit</button>
+        <button mat-raised-button color="primary" (click)="onClear()">Cancel</button>
+      </div>     
+    </form>    
+  </mat-expansion-panel>
+  
+
+  

@@ -1,0 +1,630 @@
+<form [formGroup]="service.stageThreeForm" class="formwidth" (submit)="onSubmit()">
+    <mat-expansion-panel [expanded]="expandPanel">
+      <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+        <mat-panel-title>
+          Cost Centre Attributes
+        </mat-panel-title>
+      </mat-expansion-panel-header>  
+        <table class="fullwidth" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field class="mat-select-content" appearance="outline">
+                <mat-label>Parent Cost Centre Id *</mat-label>
+                <input matInput formControlName="costCentreId" placeholder="Parent Cost Centre Id *" #costCentreId>
+                <br>                
+                <br>
+                <button mat-raised-button color="primary" type="button" (click)="costCentreSearch()">
+                  <mat-icon>search</mat-icon>
+                </button> 
+              </mat-form-field> 
+            </td> 
+            <td>
+              <mat-form-field class="mat-select-content" appearance="outline">
+                <mat-label>Cost Centre Description</mat-label>
+                <input matInput placeholder="Cost Center Description" formControlName="costCentreDescription" readonly>
+              </mat-form-field>
+              <br>
+              <br>
+              <mat-label class="mat-select-content">.Active Indicator</mat-label>
+              <mat-radio-group formControlName="activeIndicator" class="mat-radio-button-content">
+                <mat-radio-button value="A">A</mat-radio-button>
+                <mat-radio-button value="I">I</mat-radio-button>
+              </mat-radio-group>
+              <br>
+            </td>       
+          </tr>
+        </table> 
+        <!-- <table class="fullwidth" cellspacing="0">
+          <tr>
+            
+          </tr>
+        </table> -->
+        <table class="mat-select-content">
+          <tr>
+            <td>
+              <mat-form-field class="mat-select-content" appearance="outline">
+                <mat-label>Walker Business Unit</mat-label>
+                <input matInput placeholder="Walker Business Unit" formControlName="walkerBusinessUnit" readonly>
+              </mat-form-field>
+            </td>
+            <td>    
+              <mat-label>Trading/Banking Indicator</mat-label>
+              <mat-radio-group formControlName="tradingBankingIndicator" class="mat-radio-button-content">
+                <mat-radio-button value="T">T</mat-radio-button>
+                <mat-radio-button value="B">B</mat-radio-button>
+              </mat-radio-group>
+            </td>
+            <!-- <td><pre>  </pre></td> -->
+          </tr>
+        </table> 
+        <table class="fullwidth" cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field appearance="outline" class="mat-select-content">
+                <mat-label>Ledger Sets of Book Id *</mat-label>
+                <mat-select placeholder="Ledger Sets of Book Id *" [(value)]="ledgerSetsBookId" formControlName="ledgerSetsBookId" matInput>
+                 <mat-option *ngFor="let ledgerSetsBookId of ledgerSetsBookIds" [value]="ledgerSetsBookId.description" >
+                  {{ ledgerSetsBookId.description }}
+                 </mat-option>
+                </mat-select>
+            </mat-form-field>
+          </td>   
+          <td>
+            <mat-form-field appearance="outline" class="mat-select-content">
+              <mat-label>Country of Trading Location *</mat-label>
+              <mat-select placeholder="Country of Trading Location *" [(value)]="countryTradingLocation" formControlName="countryTradingLocation" matInput>
+                  <mat-option *ngFor="let countryTradingLocation of countryTradingLocations" [value]="countryTradingLocation.description" >
+                    {{ countryTradingLocation.description }}
+                  </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          
+        </tr>
+      </table>        
+      
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="mat-select-content" appearance="outline">
+              <mat-label>Legal Entity-Level</mat-label>
+              <input matInput placeholder="Legal Entity-Level" formControlName="legalEntityLevel" readonly>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="mat-select-content" appearance="outline">
+              <mat-label>Book Balance Sheet Entity</mat-label>
+              <input matInput placeholder="Book Balance Sheet Entity" formControlName="bookBalanceSheetEntity" readonly>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>  
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="mat-select-content" appearance="outline">
+              <mat-label>Balance Sheet City</mat-label>
+              <input matInput placeholder="Balance Sheet City" formControlName="balanceSheetCity" readonly>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="mat-select-content" appearance="outline">
+              <mat-label>Division</mat-label>
+              <input matInput placeholder="Division"  formControlName="division" readonly>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+  </mat-expansion-panel>
+  <mat-expansion-panel [expanded]="expandPanel">
+    <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+      <mat-panel-title>
+        Ownership Attributes
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    
+      
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="mat-select-content" appearance="outline">
+              <mat-label>Front Office (FO) *</mat-label>
+              <input matInput formControlName="frontOffice" placeholder="Front Office (FO) *"><br><br>
+              <button mat-raised-button color="primary" type="button" (click)="onCreate('FrontOffice', 'FrontOffice')">
+                <mat-icon>search</mat-icon>
+              </button> 
+            </mat-form-field>               
+          </td>
+          <td><pre>                        </pre></td>
+        </tr>
+      </table>
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="mat-select-content" appearance="outline">
+              <mat-label>Finance Cost Centre Owner</mat-label>
+              <input matInput placeholder="Finance Cost Centre Owner" formControlName="financeCostCentreOwner">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="mat-select-content" appearance="outline">
+              <mat-label>Delegate Cost Centre Owner</mat-label>
+              <input matInput placeholder="Delegate Cost Centre Owner" formControlName="delegateCostCentreOwner">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="mat-select-content" appearance="outline">
+              <mat-label>Trader Id *</mat-label>
+              <input matInput formControlName="traderId" placeholder="Trader Id *">
+              <br>
+              <br>
+              <button mat-raised-button color="primary" type="button" 
+              (click)="onCreate('FrontOffice', 'TraderId')">
+                <mat-icon>search</mat-icon>
+              </button> 
+            </mat-form-field>               
+          </td>
+          <td>
+            <mat-form-field class="mat-select-content" appearance="outline">
+              <mat-label>Secondary Trader</mat-label>
+              <input matInput formControlName="secondaryTrader" placeholder="Secondary Trader" readonly>
+              <br>
+              <br>
+              <button mat-raised-button color="primary" (click)="onCreate('FrontOffice', '')" disabled>
+                <mat-icon>search</mat-icon>
+              </button>  
+            </mat-form-field>               
+          </td>
+        </tr>
+      </table> 
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="mat-select-content" appearance="outline">
+              <mat-label>Source Book Owner *</mat-label>
+              <input matInput formControlName="sourceBookOwner" placeholder="Source Book Owner *" readonly>
+              <br>
+              <br>
+              <button mat-raised-button color="primary" (click)="onCreate('FrontOffice', '')" disabled>
+                <mat-icon>search</mat-icon>
+              </button> 
+            </mat-form-field>               
+          </td>
+          <td><pre>                        </pre></td>
+        </tr>
+      </table>
+    
+  </mat-expansion-panel>
+      <mat-expansion-panel [expanded]="expandPanel">
+    <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+      <mat-panel-title>
+        Book Approvers
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-grid-list cols="2" rowHeight="430px">
+      <mat-grid-tile>
+        
+        <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>Finance Book Approvers</mat-card-title>
+          </mat-card-header>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="button"  (click)="onCreate('FinanceApproval', '')">Add Approvers</button>
+            <button mat-raised-button color="primary" type="button"  (click)="onDelete('FinanceApproval')">Remove Approvers</button>
+          </mat-card-actions>
+          <mat-card-content>
+
+             
+            <div class="approvers-table mat-elevation-z8">
+              <table mat-table [dataSource]="financeDataSource">
+                
+                <ng-container matColumnDef="select">
+                  <th mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle('FinanceApproval') : null"
+                    [checked]="selection.hasValue() && isAllSelected('FinanceApproval')"
+                    [indeterminate]="selection.hasValue() && !isAllSelected('FinanceApproval')">
+                  </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <mat-checkbox (click)="$event.stopPropagation()"
+                  (change)="$event ? selection.toggle(row) : null"
+                  [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="personid">
+              <th mat-header-cell *matHeaderCellDef class="sticky-header">PersonId</th>
+              <td mat-cell *matCellDef="let element" > {{element.personid}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef class="sticky-header">Name</th>
+              <td mat-cell *matCellDef="let element" > {{element.name}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="stage">
+              <th mat-header-cell *matHeaderCellDef class="sticky-header">Stage</th>
+              <td mat-cell *matCellDef="let element" > {{element.stage}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="departmentId">
+              <th mat-header-cell *matHeaderCellDef class="sticky-header">DepartmentId</th>
+              <td mat-cell *matCellDef="let element" > {{element.departmentId}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="shortName">
+              <th mat-header-cell *matHeaderCellDef class="sticky-header">ShortName</th>
+              <td mat-cell *matCellDef="let element" > {{element.shortName}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="ntSystemLogin">
+              <th mat-header-cell *matHeaderCellDef class="sticky-header"> NTSystemLogin </th>
+              <td mat-cell *matCellDef="let element" > {{element.ntSystemLogin}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="ecdId">
+              <th mat-header-cell *matHeaderCellDef class="sticky-header"> EcdId </th>
+              <td mat-cell *matCellDef="let element" > {{element.ecdId}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef class="sticky-header"> Email </th>
+              <td mat-cell *matCellDef="let element" > {{element.email}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="functionalAreaAccessCode">
+              <th mat-header-cell *matHeaderCellDef class="sticky-header"> FunctionalAreaAccessCode </th>
+              <td mat-cell *matCellDef="let element" > {{element.functionalAreaAccessCode}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="groupName">
+              <th mat-header-cell *matHeaderCellDef class="sticky-header"> GroupName </th>
+              <td mat-cell *matCellDef="let element" > {{element.groupName}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="dataOwnerGroupId">
+              <th mat-header-cell *matHeaderCellDef class="sticky-header"> DataOwnerGroupId </th>
+              <td mat-cell *matCellDef="let element" > {{element.dataOwnerGroupId}} </td>
+            </ng-container>
+            
+            <tr mat-header-row *matHeaderRowDef="personSearchColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: personSearchColumns;" (click)="selection.toggle(row)"></tr>
+          </table>    
+          <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+        </div>
+      </mat-card-content>
+    </mat-card>    
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Market Risk Book Approvers</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="button"  (click)="onCreate('MarketRiskApproval', '')">Add Approvers</button>
+        <button mat-raised-button color="primary" type="button" (click)="onDelete('MarketRiskApproval')">Remove Approvers</button>
+      </mat-card-actions>
+      <mat-card-content>
+
+        <div class="approvers-table mat-elevation-z8">
+          <table mat-table [dataSource]="marketRiskDataSource">
+            
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+              <mat-checkbox (click)="$event.stopPropagation()"
+              (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="personid">
+          <th mat-header-cell *matHeaderCellDef class="sticky-header">PersonId</th>
+          <td mat-cell *matCellDef="let element" > {{element.personid}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef class="sticky-header">Name</th>
+          <td mat-cell *matCellDef="let element" > {{element.name}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="stage">
+          <th mat-header-cell *matHeaderCellDef class="sticky-header">Stage</th>
+          <td mat-cell *matCellDef="let element" > {{element.stage}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="departmentId">
+          <th mat-header-cell *matHeaderCellDef class="sticky-header">DepartmentId</th>
+          <td mat-cell *matCellDef="let element" > {{element.departmentId}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="shortName">
+          <th mat-header-cell *matHeaderCellDef class="sticky-header">ShortName</th>
+          <td mat-cell *matCellDef="let element" > {{element.shortName}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="ntSystemLogin">
+          <th mat-header-cell *matHeaderCellDef class="sticky-header"> NTSystemLogin </th>
+          <td mat-cell *matCellDef="let element" > {{element.ntSystemLogin}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="ecdId">
+          <th mat-header-cell *matHeaderCellDef class="sticky-header"> EcdId </th>
+          <td mat-cell *matCellDef="let element" > {{element.ecdId}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef class="sticky-header"> Email </th>
+          <td mat-cell *matCellDef="let element" > {{element.email}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="functionalAreaAccessCode">
+          <th mat-header-cell *matHeaderCellDef class="sticky-header"> FunctionalAreaAccessCode </th>
+          <td mat-cell *matCellDef="let element" > {{element.functionalAreaAccessCode}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="groupName">
+          <th mat-header-cell *matHeaderCellDef class="sticky-header"> GroupName </th>
+          <td mat-cell *matCellDef="let element" > {{element.groupName}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="dataOwnerGroupId">
+          <th mat-header-cell *matHeaderCellDef class="sticky-header"> DataOwnerGroupId </th>
+          <td mat-cell *matCellDef="let element" > {{element.dataOwnerGroupId}} </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="personSearchColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: personSearchColumns;" (click)="selection.toggle(row)"></tr>
+      </table>    
+      <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+    </div>
+  </mat-card-content>
+</mat-card>    
+</mat-grid-tile>
+<mat-grid-tile>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Operation Book Approvers</mat-card-title>
+    </mat-card-header>
+    <!-- <mat-card-content>
+      <form class="form-width">
+        <mat-form-field class="mat-select-content" appearance="outline">
+          <mat-label>Distribution List</mat-label>
+          <textarea matInput placeholder="Distribution List" formControlName="distributionList"></textarea>
+        </mat-form-field>
+      </form>    
+    </mat-card-content> -->
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="button" (click)="onCreate('OperationsApproval', '')">Add Approvers</button>
+      <button mat-raised-button color="primary" type="button" (click)="onDelete('OperationsApproval')">Remove Approvers</button>
+    </mat-card-actions>
+    <mat-card-content>
+      <div class="approvers-table mat-elevation-z8">
+        <table mat-table [dataSource]="operationsDataSource">
+          
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="personid">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header">PersonId</th>
+        <td mat-cell *matCellDef="let element" > {{element.personid}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header">Name</th>
+        <td mat-cell *matCellDef="let element" > {{element.name}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="stage">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header">Stage</th>
+        <td mat-cell *matCellDef="let element" > {{element.stage}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="departmentId">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header">DepartmentId</th>
+        <td mat-cell *matCellDef="let element" > {{element.departmentId}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="shortName">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header">ShortName</th>
+        <td mat-cell *matCellDef="let element" > {{element.shortName}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="ntSystemLogin">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header"> NTSystemLogin </th>
+        <td mat-cell *matCellDef="let element" > {{element.ntSystemLogin}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="ecdId">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header"> EcdId </th>
+        <td mat-cell *matCellDef="let element" > {{element.ecdId}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header"> Email </th>
+        <td mat-cell *matCellDef="let element" > {{element.email}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="functionalAreaAccessCode">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header"> FunctionalAreaAccessCode </th>
+        <td mat-cell *matCellDef="let element" > {{element.functionalAreaAccessCode}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="groupName">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header"> GroupName </th>
+        <td mat-cell *matCellDef="let element" > {{element.groupName}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="dataOwnerGroupId">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header"> DataOwnerGroupId </th>
+        <td mat-cell *matCellDef="let element" > {{element.dataOwnerGroupId}} </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="personSearchColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: personSearchColumns;" (click)="selection.toggle(row)"></tr>
+    </table>    
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+  </div>
+</mat-card-content>
+</mat-card>    
+</mat-grid-tile>
+<mat-grid-tile>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Credit Risk Book Approvers</mat-card-title>
+    </mat-card-header>
+    <!-- <mat-card-content>
+      <form class="form-width">
+        <mat-form-field class="mat-select-content" appearance="outline">
+          <mat-label>Distribution List</mat-label>
+          <textarea matInput placeholder="Distribution List" formControlName="distributionList"></textarea>
+        </mat-form-field>
+      </form>    
+    </mat-card-content> -->
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="button" (click)="onCreate('CreditRiskApproval', '')">Add Approvers</button>
+      <button mat-raised-button color="primary" type="button" (click)="onDelete('CreditRiskApproval')">Remove Approvers</button>
+    </mat-card-actions>
+    <mat-card-content>
+      <div class="approvers-table mat-elevation-z8">
+        <table mat-table [dataSource]="creditRiskDataSource">
+          
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox (change)="$event ? masterToggle() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="personid">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header">PersonId</th>
+        <td mat-cell *matCellDef="let element" > {{element.personid}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header">Name</th>
+        <td mat-cell *matCellDef="let element" > {{element.name}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="stage">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header">Stage</th>
+        <td mat-cell *matCellDef="let element" > {{element.stage}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="departmentId">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header">DepartmentId</th>
+        <td mat-cell *matCellDef="let element" > {{element.departmentId}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="shortName">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header">ShortName</th>
+        <td mat-cell *matCellDef="let element" > {{element.shortName}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="ntSystemLogin">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header"> NTSystemLogin </th>
+        <td mat-cell *matCellDef="let element" > {{element.ntSystemLogin}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="ecdId">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header"> EcdId </th>
+        <td mat-cell *matCellDef="let element" > {{element.ecdId}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header"> Email </th>
+        <td mat-cell *matCellDef="let element" > {{element.email}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="functionalAreaAccessCode">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header"> FunctionalAreaAccessCode </th>
+        <td mat-cell *matCellDef="let element" > {{element.functionalAreaAccessCode}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="groupName">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header"> GroupName </th>
+        <td mat-cell *matCellDef="let element" > {{element.groupName}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="dataOwnerGroupId">
+        <th mat-header-cell *matHeaderCellDef class="sticky-header"> DataOwnerGroupId </th>
+        <td mat-cell *matCellDef="let element" > {{element.dataOwnerGroupId}} </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="personSearchColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: personSearchColumns;" (click)="selection.toggle(row)"></tr>
+    </table>    
+    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
+  </div>
+</mat-card-content>
+</mat-card>    
+</mat-grid-tile>
+</mat-grid-list>
+</mat-expansion-panel>
+<mat-expansion-panel [expanded]="expandPanel"> 
+  <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+    <mat-panel-title>
+      Other Attributes
+    </mat-panel-title>
+  </mat-expansion-panel-header>    
+  
+    <table class="fullwidth" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>Effective Date</mat-label>
+            <input matInput placeholder="Effective Date" formControlName="effectiveDate" readonly>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>Additional Comments (Max 255 Characters) *</mat-label>
+            <textarea matInput placeholder="Additional Comments (Max 255 Characters) *" formControlName="comments"></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>            
+ 
+</mat-expansion-panel> 
+<div class="button-row">
+  <button mat-raised-button color="primary" type="submit" [disabled]="service.stageThreeForm.invalid">Proceed</button>
+  <button mat-raised-button color="primary" (click)="onClear()">Cancel</button>
+</div> 
+<br>
+    <mat-label class="message">{{service.message}}</mat-label>
+<br>
+</form> 
+
+

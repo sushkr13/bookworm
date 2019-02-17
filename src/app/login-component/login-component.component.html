@@ -1,0 +1,53 @@
+<div class="main-div">  
+<mat-card class="my-card"> 
+   <mat-card-content>
+      <mat-grid-list cols="10" rowHeight="40px">
+          <mat-grid-tile colspan='2'><img src="../../assets/rbslogo.jpg" class="avatar"></mat-grid-tile>
+          <mat-grid-tile colspan='8'>
+            <mat-toolbar color="primary" style="margin: 5px; min-height: 150px !important; height: 150px !important; background:#000099;">
+
+        <span style="color:white; font-weight:bold; font-size:30px;">Bookworm</span>        
+      </mat-toolbar></mat-grid-tile>
+          <!--<mat-grid-tile>3</mat-grid-tile>
+          <mat-grid-tile>4</mat-grid-tile> -->
+        </mat-grid-list>
+        
+      
+      <br/>
+      <br/>
+      <form [formGroup]="service.form" class="my-form" (ngSubmit)="onSubmit()" >          
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>User Name *</mat-label>
+             <input formControlName="userId" matInput placeholder="User Name *">
+             <mat-error *ngIf="service.form.controls['userId'].errors?.required">
+               This field is mandatory.
+             </mat-error>            
+          </mat-form-field>  
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Password *</mat-label>
+             <input formControlName="password" matInput placeholder="Password *" type="password">
+             <mat-error *ngIf="service.form.controls['password'].errors?.required">
+                This field is mandatory.
+             </mat-error>
+          </mat-form-field> 
+          <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Domain *</mat-label>
+             <mat-select matInput formControlName="domain" ([ngModel])="value" placeholder="Domain *" 
+             >
+               <mat-option value="FM" >FM</mat-option>
+               <mat-option value="EUROPA">EUROPA</mat-option>
+             </mat-select>
+          </mat-form-field>   
+          <br>
+          <br>     
+          <div class="wrapper">
+             <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Login</button>
+             <button mat-raised-button color="primary" (click)="onClear()">Cancel</button>
+          </div>
+          <br>
+          <mat-label class="message"><b>{{message}}</b></mat-label>
+          <br>
+      </form>
+   </mat-card-content>
+</mat-card>
+</div>

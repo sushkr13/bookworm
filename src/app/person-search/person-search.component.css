@@ -1,0 +1,37 @@
+.mat-select-content{
+  width:95% !important;
+  font-size: 12px;
+} 
+
+.formwidth {
+  margin-left:auto;
+  margin-right:auto;
+  padding: 15px;
+  border: 0.5px solid lightgrey;
+}
+
+.fullwidth {
+  width: 90%;
+  min-width: 90%;
+}
+
+
+.approvers-table {
+  width: 100%;
+  overflow-x: auto;
+  table-layout: fixed; 
+}
+
+mat-cell, .mat-cell, mat-footer-cell, .mat-footer-cell, mat-header-cell, .mat-header-cell {
+  padding: 0.75rem !important;
+}
+
+mat-header-cell, .mat-header-cell {
+  color: white;
+  background: #B39DDB;
+}
+
+.mat-toolbar {
+  color: white;
+  background: #B39DDB;
+}

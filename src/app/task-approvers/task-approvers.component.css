@@ -1,0 +1,56 @@
+.mat-select-content{
+  width:95% !important;
+  font-size: 12px;
+} 
+
+.formwidth {
+  margin-left:auto;
+  margin-right:auto;
+  padding: 15px;
+  border: 0.5px solid lightgrey;
+}
+
+.fullwidth {
+  width: 90%;
+  min-width: 90%;
+}
+
+.button-row button {
+  flex: 1 1 auto;
+  text-align: center;
+  margin: 5px;
+}
+
+.example-table {
+  flex: 1 1 auto;
+}
+
+mat-cell, .mat-cell, mat-footer-cell, .mat-footer-cell, mat-header-cell, .mat-header-cell {
+  padding: 0.75rem !important;
+}
+
+.mat-toolbar {
+  color: white;
+  background: #B39DDB;
+}
+
+
+.mat-column-displayName {
+  flex: 0 0 300px;
+  text-align: center;
+} 
+
+.mat-column-userName {
+  flex: 0 0 700px;
+  text-align: center;
+} 
+
+.mat-column-role {
+  flex: 0 0 700px;
+  text-align: center;
+} 
+
+mat-header-cell, .mat-header-cell {
+  color: white;
+  background: #B39DDB;
+}

@@ -1,0 +1,67 @@
+.formwidth {
+    margin-left:auto;
+    margin-right:auto;
+    padding: 15px;
+    border: 0.5px solid lightgrey;
+  }
+  
+  .fullwidth {
+    width: 90%;
+    min-width: 90%;
+  }
+  
+  .mat-select-content{
+    width:95% !important;
+    font-size: 12px;
+  } 
+
+  
+  .example-card {
+
+    height: 100%; 
+    box-sizing: border-box; 
+    overflow: auto;
+  }
+
+  .example-container {
+    height: 400px;
+    overflow: auto;
+  }
+
+
+  .approvers-table {
+    /* width: 550px; */
+    height: 250px;
+    overflow: auto;
+    /* overflow: auto;
+    table-layout: fixed;  */
+  }
+
+  /* .mat-header-row {
+    top: 0;
+    position: sticky !important;
+    z-index: 999 !important;
+} */
+
+  mat-cell, .mat-cell, mat-footer-cell, .mat-footer-cell, mat-header-cell, .mat-header-cell {
+    padding: 0.75rem !important;
+  }
+
+  mat-header-cell, .mat-header-cell {
+    color: white;
+    background: #B39DDB;
+  }
+
+mat-card-content, .mat-card-content 
+{
+  height: 300px !important; 
+  overflow-y: auto !important;
+}
+
+th.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  /* #To not have transparent background.
+  #background-color: white; */
+}

@@ -1,0 +1,173 @@
+<mat-toolbar style="min-height: 40px !important; height: 40px !important;"> 
+  <h1 mat-dialog-title>Cost Centre Search</h1>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+    <mat-icon>clear</mat-icon>
+  </button>
+</mat-toolbar>
+<br>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="service.form" class="formwidth" (submit)="getData(costCentreId)">
+    <table class="fullwidth" cellspacing="0">
+      <tr>
+        <td>            
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>CostCentreId *</mat-label>
+            <input matInput placeholder="CostCentreId *" formControlName="costCentreId" #costCentreId>
+          </mat-form-field>
+        </td> 
+        <td>            
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>CostCentreDescription</mat-label>
+            <input matInput placeholder="CostCentreDescription" formControlName="costCentreDescription">
+          </mat-form-field>
+        </td>  
+      </tr>
+    </table> 
+    <br>  
+    <table class="fullwidth" cellspacing="0">
+      <tr>
+        <td>            
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>WalkerBusinessUnit</mat-label>
+            <input matInput placeholder="WalkerBusinessUnit" formControlName="walkerBusinessUnit">
+          </mat-form-field>
+        </td> 
+        <td>            
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>HCSEntity</mat-label>
+            <input matInput placeholder="HCSEntity" formControlName="hcsEntity">
+          </mat-form-field>
+        </td>  
+      </tr>
+    </table> 
+    <br>     
+    <table class="fullwidth" cellspacing="0">
+      <tr>
+        <td>            
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>US People Number</mat-label>
+            <input matInput placeholder="US People Number" formControlName="usPeopleNumber">
+          </mat-form-field>
+        </td> 
+        <td>            
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>Currency</mat-label>
+            <input matInput placeholder="Currency" formControlName="currency">
+          </mat-form-field>
+        </td>  
+      </tr>
+    </table> 
+    <br>  
+    <table class="fullwidth" cellspacing="0">
+      <tr>
+        <td>            
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>Legal Entity Id</mat-label>
+            <input matInput placeholder="Legal Entity Id" formControlName="legalEntityId">
+          </mat-form-field>
+        </td> 
+        <td>            
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>Location</mat-label>
+            <input matInput placeholder="Location" formControlName="location">
+          </mat-form-field>
+        </td>  
+      </tr>
+    </table> 
+    <br>  
+    <table class="fullwidth" cellspacing="0">
+      <tr>
+        <td>          
+          <mat-form-field class="mat-select-content" appearance="outline">
+            <mat-label>Trading Banking Indicator</mat-label>
+            <input matInput placeholder="Trading Banking Indicator" formControlName="tradingBankingIndicator">
+          </mat-form-field>
+        </td>   
+        <td>
+          <mat-checkbox formControlName="syntheticCostCenter" class="mat-select-content" [(ngModel)]="checked">Synthetic Cost Center</mat-checkbox>
+        </td>
+        <td><pre>       </pre></td> 
+      </tr>
+    </table> 
+    <br>
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit">Search</button>
+      <button mat-raised-button color="primary" (click)="onClear()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="submitData()">Ok</button>
+    </div> 
+    <br>
+    <div class="approvers-table mat-elevation-z8">
+      <mat-table [dataSource]="dataSource"  matSort>
+
+          <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+        
+        <ng-container matColumnDef="costCentreId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>CostCentreId</th>
+          <td mat-cell *matCellDef="let element" > {{element.costCentreId}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="costCentreDescription">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>CostCentreDescription</th>
+          <td mat-cell *matCellDef="let element" > {{element.costCentreDescription}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="walkerBusinessUnit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>WalkerBusinessUnit</th>
+          <td mat-cell *matCellDef="let element" > {{element.walkerBusinessUnit}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="hcsEntity">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>HCSEntity</th>
+          <td mat-cell *matCellDef="let element" > {{element.hcsEntity}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="usPeopleNumber">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>USPeopleNumber</th>
+          <td mat-cell *matCellDef="let element" > {{element.usPeopleNumber}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="currency">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Currency </th>
+          <td mat-cell *matCellDef="let element" > {{element.currency}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="legalEntityId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> LegalEntityId </th>
+          <td mat-cell *matCellDef="let element" > {{element.legalEntityId}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="location">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+          <td mat-cell *matCellDef="let element" > {{element.location}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="tradingBankingIndicator">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> TradingBankingIndicator </th>
+          <td mat-cell *matCellDef="let element" > {{element.tradingBankingIndicator}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="syntheticCostCenter">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> SyntheticCostCenter </th>
+          <td mat-cell *matCellDef="let element" > {{element.syntheticCostCenter}} </td>
+        </ng-container>
+                
+        <tr mat-header-row *matHeaderRowDef="costCentreSearchColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: costCentreSearchColumns;"></tr>
+      </mat-table>    
+    </div>
+  </form>
+</mat-dialog-content>

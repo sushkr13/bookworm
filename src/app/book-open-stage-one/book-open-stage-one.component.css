@@ -1,0 +1,26 @@
+.mat-expansion-panel-header.mat-expanded, .mat-panel-title  {
+  background: rgb(226, 213, 231) !important;
+  margin: 10px;
+}
+
+.mat-expansion-panel-header, .mat-panel-title {
+  background: rgb(226, 213, 231) !important;
+  margin: 10px;
+}
+
+.formwidth {
+  margin-left:auto;
+  margin-right:auto;
+  padding: 15px;
+  border: 0.5px solid lightgrey;
+}
+
+.fullwidth {
+  width: 90%;
+  min-width: 90%;
+}
+
+.mat-select-content{
+  width:95% !important;
+  font-size: 12px;
+} 

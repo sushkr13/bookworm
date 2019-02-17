@@ -1,0 +1,83 @@
+<div class="main-div">  
+  <mat-card class="my-card"> 
+    <mat-card-content>
+      <form [formGroup]="service.form" class="my-form" (submit)="onSubmit()">
+        <img src="../../assets/logo.png" class="avatar"> 
+        <span class="gatewayText">Book Management System Gateway</span> 
+        <br/>
+        <br/>
+        <table>
+          <tr>
+            <td>
+              <mat-form-field appearance="outline" class="mat-select-content">
+                <mat-label>Source System</mat-label>
+                <mat-select matInput formControlName="sourceSystem" ([ngModel])="value" 
+                placeholder="Source System">
+                <mat-option value="Algo">Algo</mat-option>
+                <mat-option value="Calypso">Calypso</mat-option>
+                <mat-option value="GDS">GDS</mat-option>
+              </mat-select>
+            </mat-form-field>                      
+          </td>                   
+        </tr>
+        <!-- <tr *ngIf="sourceSystemSelect"> -->
+          <tr>
+            <td>
+              <mat-form-field appearance="outline" class="mat-select-content">
+                <mat-label>Activity</mat-label>
+                <mat-select matInput formControlName="activity" ([ngModel])="value" 
+                placeholder="Activity">
+                <mat-option value="Open Book">Open Book</mat-option>
+                <mat-option value="Close Book">Close Book</mat-option>
+                <mat-option value="Amend Book">Amend Book</mat-option>
+                <mat-option value="Reactivate Book">Reactivate Book</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>          
+          <td><pre> </pre></td>
+          <td>
+            <div class="wrapper">
+              <button mat-raised-button color="primary" type="button" (click)="onNext()">Next</button>
+            </div>
+          </td>
+        </tr>
+      </table>      
+      <div class="wrapper">
+        <button mat-raised-button color="primary" type="submit">Skip Straight to BookWorm</button>
+        <button mat-raised-button color="primary" (click)="onClear()" type="button">Start over</button>
+      </div>
+      <div *ngIf="sourceSystemSelect">
+        <h1 class="mat-caption">You will now be directed to ORDM team. Please send an email to NWM Finance Static Data(SDM)</h1>
+      </div>
+    </form>
+    <div class="instructions">
+      <h1 class="mat-caption"><b>User Instructions:</b></h1>
+      <h1 class="mat-caption"><b>In order to determine the appropriate workflow system to be used for book maintenance please answer the following questions:</b></h1>
+      <h1 class="mat-caption">1. Known Bookworm users please select "Skip Straight to BookWorm" tab.</h1>
+      <h1 class="mat-caption">2. For other systems select Source System from the drop down list, press the Next button.</h1>
+      <h1 class="mat-caption">3. Input Book Cost Centre or select Activity from drop down, press the Next button.</h1>
+      <h1 class="mat-caption">If you do not know your Book Cost Centre please contact your BUC representative.</h1>
+      <h1 class="mat-caption">4. You will be directed to the specific workflow system to be used.</h1>
+      <h1 class="mat-caption">For BookWorm and if your are a new BookWorm user please contact M&IBBookwormTraining&Communications@rbs.com to ensure you are correctly set up.</h1>
+      <h1 class="mat-caption">For SDM please note down the SDM ref, click Ok and you will be directed to SDM.</h1>
+      <h1 class="mat-caption">5. The Start Over button will clear inputted data, allow you to start again.</h1>
+    </div>
+  </mat-card-content>
+</mat-card>
+</div> 
+<!-- <form>
+  <mat-form-field appearance="outline" class="mat-select-content">
+    <mat-placeholder>Search reports</mat-placeholder>
+    <input matInput type="search"> 
+    <mat-label>Source System</mat-label>
+    <mat-select matInput formControlName="sourceSystem" ([ngModel])="value" 
+    placeholder="Source System">
+    <mat-option value="Algo">Algo</mat-option>
+    <mat-option value="Calypso">Calypso</mat-option>
+    <mat-option value="GDS">GDS</mat-option>
+  </mat-select>
+  <button mat-button matSuffix mat-stroked-button aria-label="search">
+    <mat-icon>search</mat-icon>
+  </button>
+</mat-form-field>
+</form> -->

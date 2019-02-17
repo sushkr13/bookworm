@@ -1,0 +1,25 @@
+<!-- <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+              <app-header-component></app-header-component>
+        </div>
+  </div> -->
+  <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+<!-- <mat-tab-group>
+ <mat-tab label="Book Open"> -->
+<mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+  <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab" >
+      <div *ngIf="selected.value===0">
+          <app-book-open-stage-one [childTabs]="tabs" [selected]="selected"></app-book-open-stage-one>
+      </div>
+      <div *ngIf="selected.value===1">
+          <app-book-open-stage-two [childStageTwoTabs]="tabs" [selected]="selected"></app-book-open-stage-two>
+      </div>
+      <div *ngIf="selected.value===2">
+          <app-book-open-stage-three></app-book-open-stage-three>
+      </div>
+  </mat-tab>
+</mat-tab-group>
+<!--</mat-tab>
+</mat-tab-group>-->
+</div></div>

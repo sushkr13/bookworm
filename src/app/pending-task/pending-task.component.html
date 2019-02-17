@@ -1,0 +1,291 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <!-- <mat-tab-group> -->
+      <!-- <mat-tab label="Pending Task List"> -->
+        <mat-grid-list cols="2" rowHeight="2:1">
+          <mat-grid-tile>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title>User's Tasks</mat-card-title>
+              </mat-card-header>
+              <mat-card-content > 
+                <div class="approvers-table mat-elevation-z8">
+                  <mat-table [dataSource]="usersTasksDataSource">
+                    
+                    <ng-container matColumnDef="requestId">
+                      <th mat-header-cell *matHeaderCellDef class="sticky-header"> RequestId </th>
+                      <td mat-cell *matCellDef="let element" > {{element.requestId}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="SLA">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> SLA </th>
+                      <td mat-cell *matCellDef="let element" > {{element.SLA}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="workflowStage">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> WorkflowStage </th>
+                      <td mat-cell *matCellDef="let element" > {{element.workflowStage}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="requestedBy">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> RequestedBy </th>
+                      <td mat-cell *matCellDef="let element" > {{element.requestedBy}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="bookName">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> BookName </th>
+                      <td mat-cell *matCellDef="let element" > {{element.bookName}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="workflowStatus">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> WorkflowStatus </th>
+                      <td mat-cell *matCellDef="let element" > {{element.workflowStatus}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="bookType">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> BookType </th>
+                      <td mat-cell *matCellDef="let element" > {{element.bookType}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="sourceSystem">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> SourceSystem </th>
+                      <td mat-cell *matCellDef="let element" > {{element.sourceSystem}} </td>
+                    </ng-container>
+                    
+                    <tr mat-header-row *matHeaderRowDef="usersTasksColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: usersTasksColumns;"></tr>
+                  </mat-table>    
+                </div>
+              </mat-card-content>
+            </mat-card>    
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title>Department's Tasks</mat-card-title>
+              </mat-card-header>
+
+              <mat-card-content >
+                <div class="approvers-table mat-elevation-z8">
+                  <mat-table [dataSource]="departmentsTasksDataSource">
+                    
+                    <ng-container matColumnDef="requestId">
+                      <th mat-header-cell *matHeaderCellDef class="sticky-header"> RequestId </th>
+                      <td mat-cell *matCellDef="let element" > {{element.requestId}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="SLA">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> SLA </th>
+                      <td mat-cell *matCellDef="let element" > {{element.SLA}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="workflowStage">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> WorkflowStage </th>
+                      <td mat-cell *matCellDef="let element" > {{element.workflowStage}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="requestedBy">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> RequestedBy </th>
+                      <td mat-cell *matCellDef="let element" > {{element.requestedBy}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="bookName">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> BookName </th>
+                      <td mat-cell *matCellDef="let element" > {{element.bookName}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="workflowStatus">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> WorkflowStatus </th>
+                      <td mat-cell *matCellDef="let element" > {{element.workflowStatus}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="bookType">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> BookType </th>
+                      <td mat-cell *matCellDef="let element" > {{element.bookType}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="sourceSystem">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> SourceSystem </th>
+                      <td mat-cell *matCellDef="let element" > {{element.sourceSystem}} </td>
+                    </ng-container>
+                    
+                    <tr mat-header-row *matHeaderRowDef="departmentsTasksColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: departmentsTasksColumns;"></tr>
+                  </mat-table>    
+                </div>
+              </mat-card-content>
+            </mat-card>    
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title>Initiated Tasks</mat-card-title>
+              </mat-card-header>                       
+              <mat-card-content >
+                <div class="approvers-table mat-elevation-z8">
+                  <mat-table [dataSource]="initiatedTasksDataSource">
+                    
+                    <ng-container matColumnDef="requestId">
+                      <th mat-header-cell *matHeaderCellDef class="sticky-header"> RequestId </th>
+                      <td mat-cell *matCellDef="let element" > {{element.requestId}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="SLA">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> SLA </th>
+                      <td mat-cell *matCellDef="let element" > {{element.SLA}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="workflowStage">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> WorkflowStage </th>
+                      <td mat-cell *matCellDef="let element" > {{element.workflowStage}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="requestedBy">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> RequestedBy </th>
+                      <td mat-cell *matCellDef="let element" > {{element.requestedBy}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="bookName">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> BookName </th>
+                      <td mat-cell *matCellDef="let element" > {{element.bookName}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="workflowStatus">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> WorkflowStatus </th>
+                      <td mat-cell *matCellDef="let element" > {{element.workflowStatus}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="bookType">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> BookType </th>
+                      <td mat-cell *matCellDef="let element" > {{element.bookType}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="sourceSystem">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> SourceSystem </th>
+                      <td mat-cell *matCellDef="let element" > {{element.sourceSystem}} </td>
+                    </ng-container>
+                    
+                    <tr mat-header-row *matHeaderRowDef="initiatedTasksColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: initiatedTasksColumns;"></tr>
+                  </mat-table>    
+                </div>
+              </mat-card-content>
+            </mat-card>    
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title>Uninitiated Tasks</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="approvers-table mat-elevation-z8">
+                  <mat-table [dataSource]="uninitiatedTasksDataSource">
+                    
+                    <ng-container matColumnDef="requestId">
+                      <th mat-header-cell *matHeaderCellDef class="sticky-header"> RequestId </th>
+                      <td mat-cell *matCellDef="let element" > {{element.requestId}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="SLA">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> SLA </th>
+                      <td mat-cell *matCellDef="let element" > {{element.SLA}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="workflowStage">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> WorkflowStage </th>
+                      <td mat-cell *matCellDef="let element" > {{element.workflowStage}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="requestedBy">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> RequestedBy </th>
+                      <td mat-cell *matCellDef="let element" > {{element.requestedBy}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="bookName">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> BookName </th>
+                      <td mat-cell *matCellDef="let element" > {{element.bookName}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="workflowStatus">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> WorkflowStatus </th>
+                      <td mat-cell *matCellDef="let element" > {{element.workflowStatus}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="bookType">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> BookType </th>
+                      <td mat-cell *matCellDef="let element" > {{element.bookType}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="sourceSystem">
+                        <th mat-header-cell *matHeaderCellDef class="sticky-header"> SourceSystem </th>
+                      <td mat-cell *matCellDef="let element" > {{element.sourceSystem}} </td>
+                    </ng-container>
+                    
+                    <tr mat-header-row *matHeaderRowDef="uninitiatedTasksColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: uninitiatedTasksColumns;"></tr>
+                  </mat-table>    
+                </div>
+              </mat-card-content>
+            </mat-card>    
+          </mat-grid-tile>
+          <!-- <mat-grid-tile>
+            <mat-card class="example-card">
+              <mat-card-header>
+                <mat-card-title>Uninitiated Closure Tasks</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="approvers-table mat-elevation-z8">
+                  <mat-table [dataSource]="usersTasksDataSource">
+                    
+                    <ng-container matColumnDef="requestId">
+                      <th mat-header-cell *matHeaderCellDef > Request Id </th>
+                      <td mat-cell *matCellDef="let element" > {{element.requestId}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="SLA">
+                        <th mat-header-cell *matHeaderCellDef > SLA </th>
+                      <td mat-cell *matCellDef="let element" > {{element.SLA}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="workflowStage">
+                        <th mat-header-cell *matHeaderCellDef > Workflow Stage </th>
+                      <td mat-cell *matCellDef="let element" > {{element.workflowStage}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="requestedBy">
+                        <th mat-header-cell *matHeaderCellDef > Requested By </th>
+                      <td mat-cell *matCellDef="let element" > {{element.requestedBy}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="bookName">
+                        <th mat-header-cell *matHeaderCellDef > Book Name </th>
+                      <td mat-cell *matCellDef="let element" > {{element.bookName}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="workflowStatus">
+                        <th mat-header-cell *matHeaderCellDef > Workflow Status </th>
+                      <td mat-cell *matCellDef="let element" > {{element.workflowStatus}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="bookType">
+                        <th mat-header-cell *matHeaderCellDef > Book Type </th>
+                      <td mat-cell *matCellDef="let element" > {{element.bookType}} </td>
+                    </ng-container>
+                    
+                    <ng-container matColumnDef="sourceSystem">
+                        <th mat-header-cell *matHeaderCellDef > Source System </th>
+                      <td mat-cell *matCellDef="let element" > {{element.sourceSystem}} </td>
+                    </ng-container>
+                    
+                    <tr mat-header-row *matHeaderRowDef="usersTasksColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: usersTasksColumns;"></tr>
+                  </mat-table>    
+                </div>
+              </mat-card-content>
+            </mat-card>    
+          </mat-grid-tile> -->
+        </mat-grid-list>
+      <!-- </mat-tab> -->
+    <!-- </mat-tab-group> -->
+  </div></div>
+  

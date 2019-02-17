@@ -1,0 +1,150 @@
+ 
+  <mat-toolbar style="min-height: 40px !important; height: 40px !important;"> 
+    <h1 mat-dialog-title>{{title}}</h1>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar>
+  <br>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="form" class="formwidth" (submit)="onSubmit()">
+      
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>
+            <mat-checkbox formControlName="isPrimary" class="mat-checkbox-content" readonly>Is Primary</mat-checkbox>
+          </td> 
+          <td><pre>    </pre></td>
+          <td>
+            <mat-checkbox formControlName="isNewLedger" class="mat-select-content">Is New Ledger</mat-checkbox>
+          </td> 
+          <td><pre> </pre></td>
+        </tr>
+      </table> 
+      <br>
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>            
+            <mat-form-field class="mat-select-content" appearance="outline">
+              <mat-label>Book Name *</mat-label>
+              <input matInput placeholder="Book Name *" formControlName="bookName">
+              <mat-error *ngIf="form.controls['bookName'].errors?.required">This field is mandatory.</mat-error>
+              <mat-error *ngIf="form.controls['bookName'].errors?.maxlength">Maximum 13 charactors allowed.</mat-error>
+            </mat-form-field>
+          </td> 
+          <td>
+            <mat-form-field appearance="outline" class="mat-select-content">
+              <mat-label>Source System *</mat-label>
+              <mat-select formControlName="sourceSystem" matInput ([ngModel])="value" placeholder="Source System *">
+                <mat-option value="Apex">Apex</mat-option>
+                <mat-option value="Anvil">Anvil</mat-option>
+                <mat-option value="Bloomberg">Bloomberg</mat-option>
+                <mat-option value="Calypso">Calypso</mat-option>
+                <mat-option value="GDS">GDS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>   
+        </tr>
+      </table> 
+      <br>
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field appearance="outline" class="mat-select-content">
+              <mat-label>Source System Location *</mat-label>
+              <mat-select formControlName="sourceSystemLocation" matInput ([ngModel])="value" placeholder="source System Location *">
+                <mat-option value="London">London</mat-option>
+                <mat-option value="Asia">Asia</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline" class="mat-select-content">
+              <mat-label>Valuation Adjustment Book Type *</mat-label>
+              <mat-select formControlName="valuationAdjustmentBookType" matInput ([ngModel])="value" placeholder="Valuation Adjustment Book Type *">
+                <mat-option value="0: Non Valuation">0: Non Valuation</mat-option>
+                <mat-option value="1: CVA">1: CVA</mat-option>
+                <mat-option value="2: FVA">2: FVA</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>   
+        </tr>
+      </table> 
+      <br>
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field appearance="outline" class="mat-select-content">
+              <mat-label>Book Classification *</mat-label>
+              <mat-select formControlName="bookClassification" matInput ([ngModel])="value" placeholder="Book Classification *">
+                <mat-option value="Standard book">Standard book</mat-option>
+                <mat-option value="A GTE - Oracle Standard Book">A GTE - Oracle Standard Book</mat-option>
+                <mat-option value="NOT FEEDING MARKET RISK">NOT FEEDING MARKET RISK</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>  
+          <td>
+            <mat-form-field appearance="outline" class="mat-select-content">
+              <mat-label>GL Posting Status *</mat-label>
+              <mat-select matInput formControlName="glPostingStatus" matInput ([ngModel])="value" placeholder="GL Posting Status *">
+                <mat-option value="Posted in SGL">Posted in SGL</mat-option>
+                <mat-option value="Not Posted in SGL">Not Posted in SGL</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          
+        </tr>
+      </table> 
+      <br>
+      <table class="fullwidth" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field appearance="outline" class="mat-select-content">
+              <mat-label>Walker Posting Source *</mat-label>
+              <mat-select formControlName="walkerPostingSource" matInput ([ngModel])="value" 
+              placeholder="Walker Posting Source *" >
+              <mat-option value="SGL Posting to Walker">SGL Posting to Walker</mat-option>
+              <mat-option value="SGL Non-Posting to Walker">SGL Non-Posting to Walker</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>   
+        <td>
+          <mat-checkbox formControlName="walkerPostingIndicator" class="mat-select-content">Walker Posting Indicator</mat-checkbox>
+        </td> 
+        <td><pre>     </pre></td>
+      </tr>
+    </table> 
+    <br>
+    <table class="fullwidth" cellspacing="0">
+      <tr> 
+        <td>
+          <mat-checkbox formControlName="crFeed" class="mat-select-content">CR Feed</mat-checkbox>
+        </td> 
+        <td>
+          <mat-checkbox formControlName="mrFeed" class="mat-select-content">MR Feed</mat-checkbox>
+        </td> 
+        <td>
+          <mat-checkbox formControlName="confirmationFlag" class="mat-select-content">Confirmation Flag</mat-checkbox>
+        </td>       
+      </tr>
+    </table> 
+    <br>
+    <table class="fullwidth" cellspacing="0">
+        <tr>          
+          <td>
+              <mat-form-field class="mat-select-content" appearance="outline">
+                  <mat-label>Settlement Flag</mat-label>
+                  <input matInput placeholder="Settlement Flag" formControlName="settlementFlag">
+              </mat-form-field>
+          </td>
+          <td><pre>                          </pre></td> 
+        </tr>
+      </table> 
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit" 
+      [disabled]="form.invalid">Submit</button>
+      <button mat-raised-button color="primary" (click)="onClear()">Cancel</button>
+    </div> 
+  </form>
+</mat-dialog-content>

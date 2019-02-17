@@ -1,0 +1,25 @@
+/* .tabs {
+    /* min-width : 0px; // added
+     width: 167px;
+     height: 42px; 
+     font-size: 25px;
+     border-radius: 3px;
+     background-color: #d8401b;
+   } */
+
+
+.btn-dialog-close
+{
+    width: 30px;
+    min-width: 20px !important;
+    max-height: 32px !important;
+}
+
+.mat-tab-label-active{
+    background-color: #7c33dc1a !important;
+    opacity: 1 !important;
+    }
+
+    .mat-tab-group.mat-primary .mat-tab-label.cdk-focused:not(.cdk-mouse-focused):not(.cdk-tab-disabled):not(.mat-tab-label-active) {
+        background: none;
+      }

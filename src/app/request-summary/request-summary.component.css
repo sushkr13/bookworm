@@ -1,0 +1,146 @@
+.mat-expansion-panel-header.mat-expanded, .mat-panel-title  {
+  background: rgb(226, 213, 231) !important;
+  margin: 10px;
+}
+
+.mat-expansion-panel-header, .mat-panel-title {
+  background: rgb(226, 213, 231) !important;
+  margin: 10px;
+}
+
+.mat-select-content{
+  width:95% !important;
+  font-size: 12px;
+} 
+
+.mat-radio-button-content{
+  width:95% !important;
+  font-size: 12px;
+  pointer-events: none;
+} 
+
+.formwidth {
+  margin-left:auto;
+  margin-right:auto;
+  /* padding: 15px; */
+  border: 0.5px solid lightgrey;
+}
+
+.fullwidth {
+  width: 100%;
+  min-width: 100%;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 300px;
+  position: relative;
+}
+
+.example-header {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: 20px;
+}
+
+.example-table {
+  overflow-x: auto;
+  table-layout: fixed; 
+}
+
+.approvers-table {
+  overflow-x: auto;
+  table-layout: fixed; 
+}
+
+.approvers-table th, td {
+  overflow: hidden;
+  text-align: center !important;
+  white-space: wrap;    
+  border-collapse: collapse;
+}
+
+.approvers-table td{
+  border-top: none;
+  border-bottom: none;
+}
+
+.mat-column-groupName, .mat-column-dataOwnerGroupId  {
+  flex: 0 0 120px;
+}
+
+.mat-column-name  {
+  flex: 0 0 170px;
+}
+
+.mat-column-personid   {
+  flex: 0 0 70px;
+}
+
+.mat-column-isPrimary, .mat-column-crFeed, .mat-column-mrFeed  {
+  flex: 0 0 50px;
+}
+
+.mat-column-confirmationFlag, .mat-column-settlementFlag
+{
+  flex: 0 0 90px;
+}
+
+.mat-column-isNewLedger {
+  flex: 0 0 60px;
+}
+
+.mat-column-valuationAdjustmentBookType {
+  flex: 0 0 190px;
+} 
+
+.mat-column-walkerPostingIndicator {
+  flex: 0 0 130px;
+}
+
+.mat-column-bookName,.mat-column-sourceSystem,.mat-column-sourceSystemLocation  {
+  flex: 0 0 120px;
+}
+
+.mat-column-bookClassification {
+  flex: 0 0 230px;
+} 
+
+mat-header-cell, .mat-header-cell {
+  color: white;
+  background: #B39DDB;
+}
+
+.mat-column-glPostingStatus,.mat-column-walkerPostingSource  {
+  flex: 0 0 140px;
+}
+
+.mat-step-label.mat-step-label-active {
+  color: red;
+  background: blue;
+}
+
+ .example-card {
+
+  height: 100%; 
+  box-sizing: border-box; 
+  overflow: auto;
+}
+mat-cell, .mat-cell, mat-header-cell, .mat-header-cell {
+  padding: 0.75rem !important;
+}
+
+.wrapper button {
+  margin: 5px;  
+  color: white;
+  background: rgb(131, 84, 218);
+  border: 1.25px solid #999999;
+  /* color: white;
+  background: rgb(5, 26, 94) !important; */
+}
+
+
